@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DIrect3D.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MyFirstGame2.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DIrect3D.cpp" />
     <ClCompile Include="MyFirstGame2.cpp" />
   </ItemGroup>
   <ItemGroup>
