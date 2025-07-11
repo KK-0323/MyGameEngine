@@ -53,14 +53,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
     //Direct3D初期化
-    Direct3D::Initialize(WINDOW_WIDTH, WINDOW_HEIGHT, hWnd);
-
+    HRESULT hr;
+    hr = Direct3D::Initialize(WINDOW_WIDTH, WINDOW_HEIGHT, hWnd);
+    if (FAILED(hr))
+    {
+        return 0;
+    }
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MYFIRSTGAME2));
 
     MSG msg = {};
     Quad* q = new Quad();
-    q->Initialize();
+    hr = q->Initialize();
+    if (FAILED(hr))
+    {
+        return 0;
+    }
     
 
     // メイン メッセージ ループ:
@@ -91,6 +99,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     }
     q->Release();
+    SAFE_DELETE(q);
+
+
     Direct3D::Release();
 
     return (int) msg.wParam;
