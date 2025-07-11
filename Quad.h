@@ -16,7 +16,7 @@ public:
 	Quad();
 	~Quad();
 	HRESULT Initialize();
-	void Draw();
+	void Draw(DirectX::XMMATRIX& worldMatrix);
 	void Release();
 };
 

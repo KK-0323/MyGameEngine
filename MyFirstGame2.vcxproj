@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="DIrect3D.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MyFirstGame2.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DIrect3D.cpp" />
     <ClCompile Include="MyFirstGame2.cpp" />
     <ClCompile Include="Quad.cpp" />

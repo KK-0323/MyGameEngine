@@ -5,6 +5,7 @@
 #include "MyFirstGame2.h"
 #include "Direct3D.h"
 #include "Quad.h"
+#include "Camera.h"
 
 
 HWND hWnd = nullptr;
@@ -60,6 +61,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 0;
     }
 
+    Camera::Initialize(); // カメラの初期化
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MYFIRSTGAME2));
 
     MSG msg = {};
@@ -90,11 +93,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
         //ゲームの処理
+        Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
 
         //描画処理
-        q->Draw();
+        XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(45));
+        q->Draw(mat);
         Direct3D::EndDraw();
 
     }
