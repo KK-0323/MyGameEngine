@@ -1,9 +1,10 @@
 #pragma once
 #include "Direct3D.h"
+#include <DirectXMath.h>
 
 struct CONSTANT_BUFFER
 {
-	XMMATRIX	matWVP; //would\view\projectionÇÃçsóÒ
+	DirectX::XMMATRIX	matWVP; //would\view\projectionÇÃçsóÒ
 };
 
 class Quad
