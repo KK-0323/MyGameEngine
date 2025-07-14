@@ -12,8 +12,8 @@ struct CONSTANT_BUFFER
 //頂点情報
 struct VERTEX
 {
-	XMVECTOR position;	//位置
-	XMVECTOR uv;		//UV座標
+	XMFLOAT4 pos;	//位置
+	XMFLOAT2 uv;	//UV座標
 };
 
 //前方宣言

@@ -1,7 +1,7 @@
 //───────────────────────────────────────
 // テクスチャ＆サンプラーデータのグローバル変数定義
 //───────────────────────────────────────
-Texture2D g_texture : register(t0); //テクスチャー
+Texture2D    g_texture : register(t0); //テクスチャー
 SamplerState g_sampler : register(s0); //サンプラー
 
 //───────────────────────────────────────
@@ -18,8 +18,8 @@ cbuffer global
 //───────────────────────────────────────
 struct VS_OUT
 {
-    float4 pos : SV_POSITION; //位置
-    float2 uv : TEXCOORD; //UV座標
+    float4 pos : SV_POSITION;   //位置
+    float2 uv : TEXCOORD;       //UV座標
 };
 
 //───────────────────────────────────────
@@ -44,6 +44,7 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD)
 //───────────────────────────────────────
 float4 PS(VS_OUT inData) : SV_Target
 {
+    //return float4(1, 1, 0, 1);
     float4 color = g_texture.Sample(g_sampler, inData.uv);
     float4 ret = float4(inData.uv.x, inData.uv.y, 0, 1);
     return ret;
