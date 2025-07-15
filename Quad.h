@@ -23,11 +23,11 @@ class Quad
 {
 public:
 	Quad();
-	~Quad();
-	HRESULT Initialize();
-	void Draw(DirectX::XMMATRIX& worldMatrix);
+	virtual ~Quad();
+	virtual HRESULT Initialize();
+	virtual void Draw(XMMATRIX& worldMatrix);
 	void Release();
-private:
+protected:
 	ID3D11Buffer* pVertexBuffer_;	//頂点バッファ
 	ID3D11Buffer* pIndexBuffer_;	//インデックスバッファ
 	ID3D11Buffer* pConstantBuffer_;	//定数バッファ

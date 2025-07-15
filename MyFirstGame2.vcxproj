@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Dice.h" />
-    <ClInclude Include="DIrect3D.h" />
+    <ClInclude Include="Direct3D.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MyFirstGame2.h" />
     <ClInclude Include="Quad.h" />
@@ -140,7 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Dice.cpp" />
-    <ClCompile Include="DIrect3D.cpp" />
+    <ClCompile Include="Direct3D.cpp" />
     <ClCompile Include="MyFirstGame2.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Texture.cpp" />

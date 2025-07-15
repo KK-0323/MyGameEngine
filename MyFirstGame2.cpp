@@ -6,6 +6,7 @@
 #include "Direct3D.h"
 #include "Quad.h"
 #include "Camera.h"
+#include "Dice.h"
 
 
 HWND hWnd = nullptr;
@@ -66,8 +67,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MYFIRSTGAME2));
 
     MSG msg = {};
-    Quad* q = new Quad();
-    hr = q->Initialize();
+    //Quad* q = new Quad();
+    //hr = q->Initialize();
+
+    Dice* dice = new Dice();
+    hr = dice->Initialize();
     if (FAILED(hr))
     {
         return 0;
@@ -93,18 +97,23 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
         //ゲームの処理
+        static float angle = 0.0f;
+        static float radius = 10.0f; // カメラの回転半径
+        angle += 0.001f;
+        XMVECTOR newCameraPosition = XMVectorSet(radius * sin(angle), 3.0f, -radius * cos(angle), 0.0f);
+        Camera::SetPosition(newCameraPosition);
         Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
 
         //描画処理
         XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(45));
-        q->Draw(mat);
+        dice->Draw(mat);
         Direct3D::EndDraw();
 
     }
-    q->Release();
-    SAFE_DELETE(q);
+    dice->Release();
+    SAFE_DELETE(dice);
 
 
     Direct3D::Release();
