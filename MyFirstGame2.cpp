@@ -98,16 +98,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         //ゲームの処理
         static float angle = 0.0f;
-        static float radius = 10.0f; // カメラの回転半径
-        angle += 0.001f;
-        XMVECTOR newCameraPosition = XMVectorSet(radius * sin(angle), 3.0f, -radius * cos(angle), 0.0f);
-        Camera::SetPosition(newCameraPosition);
+        angle += 0.1f;
         Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
 
         //描画処理
-        XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(45));
+        XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle));
         dice->Draw(mat);
         Direct3D::EndDraw();
 
