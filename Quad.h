@@ -14,6 +14,7 @@ struct VERTEX
 {
 	XMFLOAT4 pos;	//ˆÊ’u
 	XMFLOAT2 uv;	//UVÀ•W
+	XMVECTOR normal;
 };
 
 //‘O•ûéŒ¾
