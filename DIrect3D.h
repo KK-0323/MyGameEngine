@@ -10,6 +10,13 @@
 #define SAFE_DELETE(p) if(p != nullptr){ delete p; p = nullptr;}
 #define SAFE_RELEASE(p) if(p != nullptr){ p->Release(); p = nullptr;}
 
+enum SHADER_TYPE
+{
+	SHADER_3D,	//3D用シェーダー
+	SHADER_2D,	//2D用シェーダー
+	SHADER_MAX	//シェーダーの最大数
+};
+
 namespace Direct3D
 {
 	//externはどこかに実際の定義（宣言）文がある宣言
@@ -21,6 +28,10 @@ namespace Direct3D
 
 	//シェーダー準備
 	HRESULT InitShader();
+	HRESULT InitShader3D(); //3D用シェーダー初期化
+	HRESULT InitShader2D(); //2D用シェーダー初期化
+
+	void SetShader(SHADER_TYPE type); //シェーダーをセット
 
 	//描画開始
 	void BeginDraw();

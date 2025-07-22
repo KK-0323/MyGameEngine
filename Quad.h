@@ -6,7 +6,9 @@ using namespace DirectX;
 
 struct CONSTANT_BUFFER
 {
-	DirectX::XMMATRIX	matWVP; //would\view\projectionの行列
+	XMMATRIX matWVP; //would\view\projectionの行列
+	XMMATRIX matNormal;//法線変換用の行列
+	XMMATRIX matWorld; //ワールド行列
 };
 
 //頂点情報
@@ -14,7 +16,7 @@ struct VERTEX
 {
 	XMFLOAT4 pos;	//位置
 	XMFLOAT2 uv;	//UV座標
-	XMVECTOR normal;
+	XMFLOAT4 normal;//法線ベクトル
 };
 
 //前方宣言
