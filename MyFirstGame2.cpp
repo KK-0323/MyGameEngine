@@ -4,9 +4,10 @@
 #include "framework.h"
 #include "MyFirstGame2.h"
 #include "Direct3D.h"
-#include "Quad.h"
+//#include "Quad.h"
 #include "Camera.h"
-#include "Dice.h"
+//#include "Dice.h"
+#include "Sprite.h"
 
 
 HWND hWnd = nullptr;
@@ -70,8 +71,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //Quad* q = new Quad();
     //hr = q->Initialize();
 
-    Dice* dice = new Dice();
-    hr = dice->Initialize();
+    //Dice* dice = new Dice();
+    Sprite* sprite = new Sprite();
+    hr = sprite->Initialize();
+    //hr = dice->Initialize();
     if (FAILED(hr))
     {
         return 0;
@@ -97,20 +100,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
         //ゲームの処理
-        static float angle = 0.0f;
-        angle += 0.1f;
+        //static float angle = 0.0f;
+        //angle += 0.1f;
         Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
 
         //描画処理
-        XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle));
-        dice->Draw(mat);
+        //XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle));
+        //dice->Draw(mat);
+        XMMATRIX mat = XMMatrixIdentity();
+        sprite->Draw(mat);
         Direct3D::EndDraw();
 
     }
-    dice->Release();
-    SAFE_DELETE(dice);
+    //dice->Release();
+    //SAFE_DELETE(dice);
 
 
     Direct3D::Release();
