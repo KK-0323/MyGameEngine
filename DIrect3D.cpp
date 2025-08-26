@@ -197,6 +197,8 @@ HRESULT Direct3D::InitShader2D()
     assert(pCompilePS != nullptr);
     hr = pDevice->CreatePixelShader(pCompilePS->GetBufferPointer(),
         pCompilePS->GetBufferSize(), NULL, &(shaderBundle[SHADER_2D].pPixelShader));
+    
+    if (FAILED(hr))
     {
         MessageBox(nullptr, L"ピクセルシェーダの作成に失敗しました", L"エラー", MB_OK);
         return hr;
@@ -205,7 +207,7 @@ HRESULT Direct3D::InitShader2D()
     //頂点インプットレイアウト
     D3D11_INPUT_ELEMENT_DESC layout[] = {
         { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,  D3D11_INPUT_PER_VERTEX_DATA, 0 },	//位置
-        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(XMVECTOR), D3D11_INPUT_PER_VERTEX_DATA, 0},//UV座標
+        { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(XMFLOAT4), D3D11_INPUT_PER_VERTEX_DATA, 0},//UV座標
     };
     hr = pDevice->CreateInputLayout(layout, 2, pCompileVS->GetBufferPointer(),
         pCompileVS->GetBufferSize(), &(shaderBundle[SHADER_2D].pVertexLayout));
