@@ -11,7 +11,7 @@ Transform::~Transform()
 {
 }
 
-void Transform::Calclation()
+void Transform::Calculation()
 {
     matScale_ = XMMatrixScaling(scale_.x, scale_.y, scale_.z);
     matRotate_ = XMMatrixRotationRollPitchYaw(rotate_.x, rotate_.y, rotate_.z);
