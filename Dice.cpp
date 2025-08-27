@@ -2,6 +2,7 @@
 #include <DirectXMath.h>
 #include "Camera.h"
 #include "Texture.h"
+#include "Transform.h"
 
 using namespace DirectX;
 
@@ -125,10 +126,14 @@ HRESULT Dice::Initialize()
 	return S_OK;
 }
 
-void Dice::Draw(XMMATRIX& worldMatrix)
+void Dice::Draw(Transform& transform)
 {
 	//コンスタントバッファに渡す情報
 	CONSTANT_BUFFER cb;
+
+	transform.Calclation();
+	XMMATRIX worldMatrix = transform.GetWorldMatrix();
+
 	cb.matWVP = XMMatrixTranspose(worldMatrix * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 	cb.matNormal = XMMatrixInverse(nullptr, worldMatrix);	//法線変換用の行列
 	cb.matWorld = XMMatrixTranspose(worldMatrix);

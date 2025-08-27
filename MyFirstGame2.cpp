@@ -8,6 +8,7 @@
 #include "Camera.h"
 //#include "Dice.h"
 #include "Sprite.h"
+#include "Transform.h"
 
 
 HWND hWnd = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Direct3D.h"
 #include <DirectXMath.h>
+#include "Transform.h"
 
 using namespace DirectX;
 
@@ -28,7 +29,7 @@ public:
 	Quad();
 	virtual ~Quad();
 	virtual HRESULT Initialize();
-	virtual void Draw(XMMATRIX& worldMatrix);
+	virtual void Draw(Transform& transform);
 	void Release();
 protected:
 	ID3D11Buffer* pVertexBuffer_;	//頂点バッファ

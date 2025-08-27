@@ -1,6 +1,7 @@
 #include "Quad.h"
 #include "Camera.h"
 #include "Texture.h"
+#include "Transform.h"
 
 using namespace DirectX;
 
@@ -91,13 +92,18 @@ HRESULT Quad::Initialize()
 	return S_OK;
 }
 
-void Quad::Draw(XMMATRIX& worldMatrix)
+void Quad::Draw(Transform& transform)
 {
 	//コンスタントバッファに渡す情報
 	D3D11_MAPPED_SUBRESOURCE pdata;
 	CONSTANT_BUFFER cb;
-	cb.matWVP = XMMatrixTranspose(worldMatrix * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
 
+	transform.Calclation();
+	XMMATRIX worldMatrix = transform.GetWorldMatrix();
+
+	cb.matWVP = XMMatrixTranspose(worldMatrix * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
+	cb.matNormal = XMMatrixInverse(nullptr, worldMatrix);
+	cb.matWorld = XMMatrixTranspose(worldMatrix);
 	
 	Direct3D::pContext->Map(pConstantBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &pdata);	// GPUからのデータアクセスを止める
 	memcpy_s(pdata.pData, pdata.RowPitch, (void*)(&cb), sizeof(cb));	// データを値を送る
