@@ -98,7 +98,7 @@ void Quad::Draw(Transform& transform)
 	D3D11_MAPPED_SUBRESOURCE pdata;
 	CONSTANT_BUFFER cb;
 
-	transform.Calclation();
+	transform.Calculation();
 	XMMATRIX worldMatrix = transform.GetWorldMatrix();
 
 	cb.matWVP = XMMatrixTranspose(worldMatrix * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());

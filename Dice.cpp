@@ -131,7 +131,7 @@ void Dice::Draw(Transform& transform)
 	//コンスタントバッファに渡す情報
 	CONSTANT_BUFFER cb;
 
-	transform.Calclation();
+	transform.Calculation();
 	XMMATRIX worldMatrix = transform.GetWorldMatrix();
 
 	cb.matWVP = XMMatrixTranspose(worldMatrix * Camera::GetViewMatrix() * Camera::GetProjectionMatrix());
