@@ -25,6 +25,7 @@ class Fbx
 	int vertexCount_;	//頂点数
 	int polygonCount_;	//ポリゴン数
 
+	//バッファ
 	ID3D11Buffer* pVertexBuffer_;
 	ID3D11Buffer* pIndexBuffer_;
 	ID3D11Buffer* pConstantBuffer_;
@@ -34,4 +35,8 @@ public:
 	HRESULT Load(std::string fileName);
 	void    Draw(Transform& transform);
 	void    Release();
+
+	void InitVertex(FbxMesh* mesh);
+	void InitIndex(FbxMesh* mesh);
+	void IntConstantBuffer();	//コンスタントバッファ準備
 };
