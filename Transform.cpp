@@ -1,6 +1,9 @@
 #include "Transform.h"
 
 Transform::Transform()
+    :matScale_(XMMatrixIdentity()),
+    matRotate_(XMMatrixIdentity()),
+    matTranslate_(XMMatrixIdentity())
 {
     position_ = { 0.0f,0.0f,0.0f };
     rotate_ = { 0.0f,0.0f,0.0f };

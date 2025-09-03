@@ -95,7 +95,7 @@ void Fbx::InitVertex(fbxsdk::FbxMesh* mesh)
 
 void Fbx::InitIndex(FbxMesh* mesh)
 {
-	pIndexBuffer_ = new ID3D11Buffer * [materialCount_];
+	//pIndexBuffer_ = new ID3D11Buffer * [materialCount_];
 
 	int* index = new int[polygonCount_ * 3];
 
@@ -132,7 +132,7 @@ void Fbx::InitIndex(FbxMesh* mesh)
 		InitData.SysMemSlicePitch = 0;
 
 		HRESULT hr;
-		hr = Direct3D::pDevice->CreateBuffer(&bd, &InitData, &pIndexBuffer_[i]);
+		hr = Direct3D::pDevice->CreateBuffer(&bd, &InitData, &pIndexBuffer_);
 		if (FAILED(hr))
 		{
 			MessageBox(nullptr, L"インデックスバッファの作成に失敗しました", L"エラー", MB_OK);
@@ -211,6 +211,9 @@ void Fbx::InitMaterial(FbxNode* pNode)
 
 void Fbx::Draw(Transform& transform)
 {
+	Direct3D::SetShader(SHADER_3D);
+	transform.Calculation();
+
 	//コンスタントバッファに渡す情報
 	D3D11_MAPPED_SUBRESOURCE pdata;
 	CONSTANT_BUFFER cb;

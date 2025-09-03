@@ -118,6 +118,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //XMMATRIX mat = XMMatrixIdentity();
         //sprite->Draw(mat);
         Transform transform;
+        transform.position_.x = 1.0f;
+        transform.rotate_.z = 0.0f;
+        transform.Calculation();
         fbx->Draw(transform);
         Direct3D::EndDraw();
 
