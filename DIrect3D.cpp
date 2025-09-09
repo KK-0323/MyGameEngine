@@ -107,7 +107,7 @@ HRESULT Direct3D::Initialize(int winW, int winH, HWND hWnd)
 
     //データを画面に描画するための一通りの設定（パイプライン）
     pContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);  // データの入力種類を指定
-    pContext->OMSetRenderTargets(1, &pRenderTargetView, nullptr);            // 描画先を設定
+    pContext->OMSetRenderTargets(1, &pRenderTargetView, pDepthStencilView);            // 描画先を設定
     pContext->RSSetViewports(1, &vp);
 
     //シェーダー準備
