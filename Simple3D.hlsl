@@ -46,7 +46,8 @@ VS_OUT VS(float4 pos : POSITION, float4 uv : TEXCOORD, float4 normal : NORMAL)
     
     float4 light = float4(-1, 0.5, -0.7, 0);
     light = normalize(light);
-    outData.color = dot(normal, light);
+    light.w = 0;
+    outData.color = clamp(dot(normal, light), 0, 1);
 
 	//Ç‹Ç∆ÇﬂÇƒèoóÕ
     return outData;
@@ -59,13 +60,13 @@ float4 PS(VS_OUT inData) : SV_Target
 {
     //return float4(1, 1, 0, 1);
     float4 color;
-    if (useTexture)
+    if (useTexture == 1)
     {
         color = g_texture.Sample(g_sampler, inData.uv) * inData.color;
     }
     else
     {
-        color = float4(1, 1, 1, 1);
+        color = diffuseColor;
 
     }
     

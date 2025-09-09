@@ -19,8 +19,8 @@ HWND hWnd = nullptr;
 #define MAX_LOADSTRING 100
 
 const wchar_t* WIN_CLASS_NAME = L"SAMPLE GAME WINDOW"; // ウィンドウ クラス名
-const int WINDOW_WIDTH = 800;   // ウィンドウの幅
-const int WINDOW_HEIGHT = 600;  // ウィンドウの高さ
+const int WINDOW_WIDTH = 800;  //ウィンドウの幅
+const int WINDOW_HEIGHT = 600; //ウィンドウの高さ //SVGAサイズ
 
 
 // グローバル変数:
@@ -44,12 +44,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: ここにコードを挿入してください。
 
-    //szWindowClass = WIN_CLASS_NAME; // ウィンドウクラス名を設定
+    //szWindowClass = WIN_CLASS_NAME; // ウィンドウ クラス名を設定
 
     // グローバル文字列を初期化する
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_MYFIRSTGAME2, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
+
 
     // アプリケーション初期化の実行:
     if (!InitInstance(hInstance, nCmdShow))
@@ -67,20 +68,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     Camera::Initialize(); // カメラの初期化
 
+
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MYFIRSTGAME2));
 
     MSG msg = {};
-    //Quad* q = new Quad();
-    //hr = q->Initialize();
 
-    
-    //Sprite* sprite = new Sprite();
-    //hr = sprite->Initialize();
+
+    //Quad* q = new Quad();
     //Dice* dice = new Dice();
+    //Sprite* sprite = new Sprite();
+    Fbx* fbx = new Fbx();
+    fbx->Load("Oden.fbx");
+
+    //hr = q->Initialize();
     //hr = dice->Initialize();
-    Fbx* fbx = new Fbx;
-    hr = fbx->Load("Assets\\Oden.fbx");
-    
+   // hr = sprite->Initialize();
     if (FAILED(hr))
     {
         return 0;
@@ -93,44 +96,49 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //メッセージあり
 
         while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
-
         {
-
             TranslateMessage(&msg);
-
             DispatchMessage(&msg);
-
         }
-
         //メッセージなし
 
-
         //ゲームの処理
-        //static float angle = 0.0f;
-        //angle += 0.1f;
         Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
 
         //描画処理
+        //static float angle = 0.0f;
         //XMMATRIX mat = XMMatrixRotationY(XMConvertToRadians(angle));
-        //dice->Draw(mat);
-        //XMMATRIX mat = XMMatrixIdentity();
-        //sprite->Draw(mat);
-        Transform transform;
-        transform.position_.x = 1.0f;
-        transform.rotate_.z = 0.0f;
-        transform.Calculation();
-        fbx->Draw(transform);
-        Direct3D::EndDraw();
+        //mat *= XMMatrixTranslation(0.0f, 0.0f, 5.0f); //Z軸方向に5.0f移動
+        //q->Draw(mat);
+        //dice->Draw(mat); // ダイスの描画
+        //angle += 0.05f; //角度を更新
 
+
+
+
+        //XMMATRIX mat = XMMatrixIdentity();
+        static Transform trans;
+        trans.position_.x = 1.0f;
+        trans.rotate_.y += 0.1f;
+        trans.Calculation();
+        // XMMATRIX Mtrs = trans.GetWorldMatrix();
+         //sprite->Draw(Mtrs);
+        fbx->Draw(trans);
+
+
+        Direct3D::EndDraw();
     }
+
+    //q->Release();
+    //SAFE_DELETE(q);
     //dice->Release();
+    //sprite->Release();
     //SAFE_DELETE(dice);
-    fbx->Release();
-    SAFE_DELETE(fbx);
 
     Direct3D::Release();
+
 
     return (int)msg.wParam;
 }
@@ -176,6 +184,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     hInst = hInstance; // グローバル変数にインスタンス ハンドルを格納する
+
 
     //ウィンドウサイズの計算
     RECT winRect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
