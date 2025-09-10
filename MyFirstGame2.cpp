@@ -10,9 +10,10 @@
 //#include "Sprite.h"
 #include "Transform.h"
 #include "Fbx.h"
+#include "Input.h"
 
 
-HWND hWnd = nullptr;
+HWND hWnd = nullptr; // ウィンドウハンドル
 
 
 
@@ -66,6 +67,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 0;
     }
 
+    Input::Initialize(hWnd);
+
     Camera::Initialize(); // カメラの初期化
 
 
@@ -106,6 +109,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         Camera::Update(); // カメラの更新
 
         Direct3D::BeginDraw();
+        Input::Update();
 
         //描画処理
         //static float angle = 0.0f;
@@ -115,7 +119,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //dice->Draw(mat); // ダイスの描画
         //angle += 0.05f; //角度を更新
 
-
+        if (Input::IsKey(DIK_ESCAPE))
+        {
+            PostQuitMessage(0);
+        }
 
 
         //XMMATRIX mat = XMMatrixIdentity();
@@ -127,7 +134,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
          //sprite->Draw(Mtrs);
         fbx->Draw(trans);
 
-
+        Input::Release();
         Direct3D::EndDraw();
     }
 
