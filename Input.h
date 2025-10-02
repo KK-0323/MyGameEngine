@@ -1,6 +1,9 @@
 #pragma once
 
 #include <dInput.h>
+#include <DirectXMath.h>
+
+using namespace DirectX;
 
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dInput8.lib")
@@ -12,5 +15,10 @@ namespace Input
 	void Initialize(HWND hWnd);
 	void Update();
 	bool IsKey(int keyCode);
+	// ÉLÅ[Çè„Ç∞ÇΩÇËâ∫Ç∞ÇΩÇË
+	bool IsKeyUp(int keyCode);
+	bool IsKeyDown(int keyCode);
+	XMVECTOR GetMousePosition();
+	void SetMousePosition(int x, int y);
 	void Release();
 };

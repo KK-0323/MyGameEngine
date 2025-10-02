@@ -2,9 +2,16 @@
 
 namespace Input
 {
+	//キーボードインプット
 	LPDIRECTINPUT8   pDInput = nullptr;
 	LPDIRECTINPUTDEVICE8 pKeyDevice = nullptr;
 	BYTE keyState[256] = { 0 };
+	BYTE prevKeyState[256] = { 0 };
+	//マウスインプット
+	LPDIRECTINPUTDEVICE8 pMouseDevice = nullptr;
+	DIMOUSESTATE mouseState; // マウスの状態
+	DIMOUSESTATE prevMouseState; // 前回のマウスの状態
+	XMVECTOR mousePosition;
 
 	void Initialize(HWND hWnd)
 	{
@@ -16,17 +23,54 @@ namespace Input
 
 	void Update()
 	{
+		memcpy(prevKeyState, keyState, sizeof(keyState)); // ブロックコピー
+		for (auto i = 0; i < 256; i++)
+		{
+			prevKeyState[i] = keyState[i];
+		}
+
 		pKeyDevice->Acquire();
 		pKeyDevice->GetDeviceState(sizeof(keyState), &keyState);
 	}
 
 	bool IsKey(int keyCode)
 	{
-		if (keyState[keyCode] & 128)
+		if (keyState[keyCode] & 0x80)
 		{
 			return true;
 		}
 		return false;
+	}
+
+	bool IsKeyUp(int keyCode)
+	{
+		//今は離していて、前回は押している
+		if (!IsKey(keyCode) && (prevKeyState[keyCode] & 0x80))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool IsKeyDown(int keyCode)
+	{
+		//今は押してて、前回は押してない
+		if (IsKey(keyCode) && !(prevKeyState[keyCode] & 0x80))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	XMVECTOR GetMousePosition()
+	{
+		return mousePosition;
+	}
+
+	void SetMousePosition(int x, int y)
+	{
+		//mousePosition = XMVectorSet((float)x, (float)y, 0.0f, 0.0f);
+		mousePosition = { (float)x, (float)y, 0.0f, 0.0f };
 	}
 
 	void Release()

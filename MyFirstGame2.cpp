@@ -67,7 +67,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 0;
     }
 
-    Input::Initialize(hWnd);
+    Input::Initialize(hWnd); // 入力初期化
 
     Camera::Initialize(); // カメラの初期化
 
@@ -107,9 +107,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         //ゲームの処理
         Camera::Update(); // カメラの更新
-
+        Input::Update(); //　入力更新
         Direct3D::BeginDraw();
-        Input::Update();
 
         //描画処理
         //static float angle = 0.0f;
@@ -119,9 +118,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //dice->Draw(mat); // ダイスの描画
         //angle += 0.05f; //角度を更新
 
-        if (Input::IsKey(DIK_ESCAPE))
+        if (Input::IsKeyDown(DIK_ESCAPE))
         {
-            PostQuitMessage(0);
+            static int cnt = 0;
+            cnt++;
+            if (cnt >= 3)
+            {
+                PostQuitMessage(0);
+            }
+            
         }
 
 
@@ -131,10 +136,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         trans.rotate_.y += 0.1f;
         trans.Calculation();
         // XMMATRIX Mtrs = trans.GetWorldMatrix();
-         //sprite->Draw(Mtrs);
+        // sprite->Draw(Mtrs);
         fbx->Draw(trans);
 
-        Input::Release();
         Direct3D::EndDraw();
     }
 
@@ -144,6 +148,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //sprite->Release();
     //SAFE_DELETE(dice);
 
+    SAFE_DELETE(fbx);
+    Input::Release();
     Direct3D::Release();
 
 
@@ -252,6 +258,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         EndPaint(hWnd, &ps);
     }
     break;
+    case WM_MOUSEMOVE:
+        {
+            int x = LOWORD(lParam);
+            int y = LOWORD(lParam);
+            Input::SetMousePosition(LOWORD(lParam), HIWORD(lParam));
+            OutputDebugStringA((std::to_string(x) + "," + std::to_string(y) + "\n").c_str());
+        }
+        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
