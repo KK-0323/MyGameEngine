@@ -129,7 +129,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             
         }
 
-
+        if (Input::IsMouseButtonDown(0))
+        {
+            static int cnt = 0;
+            cnt++;
+            if (cnt >= 3)
+            {
+                PostQuitMessage(0);
+            }
+        }
         //XMMATRIX mat = XMMatrixIdentity();
         static Transform trans;
         trans.position_.x = 1.0f;

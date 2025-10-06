@@ -18,7 +18,12 @@ namespace Input
 	// キーを上げたり下げたり
 	bool IsKeyUp(int keyCode);
 	bool IsKeyDown(int keyCode);
+
+	// マウスの状態
 	XMVECTOR GetMousePosition();
 	void SetMousePosition(int x, int y);
+	bool IsMouseButton(int btnCode);
+	bool IsMouseButtonUp(int btnCode);
+	bool IsMouseButtonDown(int btnCode);
 	void Release();
 };
