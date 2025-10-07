@@ -1,16 +1,16 @@
-﻿// MyFirstGame2.cpp : アプリケーションのエントリ ポイントを定義します。
+﻿// Main.cpp : アプリケーションのエントリ ポイントを定義します。
 //
 
 #include "framework.h"
-#include "MyFirstGame2.h"
-#include "Direct3D.h"
-//#include "Quad.h"
-#include "Camera.h"
-//#include "Dice.h"
-//#include "Sprite.h"
-#include "Transform.h"
-#include "Fbx.h"
-#include "Input.h"
+#include "Main.h"
+#include "Engine\\Direct3D.h"
+//#include "Engine\\Quad.h"
+#include "Engine\\Camera.h"
+//#include "Engine\\Dice.h"
+//#include "Engine\\Sprite.h"
+#include "Engine\\Transform.h"
+#include "Engine\\Fbx.h"
+#include "Engine\\Input.h"
 
 
 HWND hWnd = nullptr; // ウィンドウハンドル
@@ -49,7 +49,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // グローバル文字列を初期化する
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_MYFIRSTGAME2, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDC_Main, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
 
@@ -73,7 +73,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MYFIRSTGAME2));
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_Main));
 
     MSG msg = {};
 
@@ -182,7 +182,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MYFIRSTGAME2));
+    wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_Main));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = NULL;
