@@ -119,11 +119,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         
         //pRootJobから全てのオブジェクトを描画する
         pRootJob->DrawSub();
+        pRootJob->UpdateSub();
 
         Direct3D::EndDraw();
     }
 
     Input::Release();
+    pRootJob->ReleaseSub();
     Direct3D::Release();
 
 
