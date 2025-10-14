@@ -13,10 +13,11 @@ RootJob::~RootJob()
 void RootJob::Initialize()
 {
 	// PlaySceneを生成して子オブジェクトに追加する
-	PlayScene* pPlayScene;
-	pPlayScene = new PlayScene(this);
-	pPlayScene->Initialize();
-	childList_.push_back(pPlayScene);
+	//PlayScene* pPlayScene;
+	//pPlayScene = new PlayScene(this);
+	//pPlayScene->Initialize();
+	//childList_.push_back(pPlayScene);
+	Instantiate<PlayScene>(this);
 }
 
 void RootJob::Update()
