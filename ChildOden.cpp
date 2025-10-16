@@ -10,7 +10,8 @@ ChildOden::ChildOden(GameObject* parent)
 	transform_.scale_.x = 0.2f;
 	transform_.scale_.y = 0.2f;
 	transform_.scale_.z = 0.2f;
-	transform_.position_.x = 3.0f;
+	transform_.position_.x = 2.0f;
+	transform_.position_.y = 1.0f;
 }
 
 ChildOden::~ChildOden()

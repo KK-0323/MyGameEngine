@@ -21,6 +21,11 @@ public:
 	void DrawSub();
 	void UpdateSub();
 	void ReleaseSub();
+
+	void SetPosition(XMFLOAT3 position);
+	void SetPosition(float x, float y, float z);
+	void KillMe();
+
 	template <typename T>
 	GameObject* Instantiate(GameObject* parent)
 	{
@@ -35,4 +40,7 @@ protected:
 	Transform	transform_;
 	GameObject* pParent_;
 	string	objectName_;
+
+private:
+	bool isDead_;
 };
