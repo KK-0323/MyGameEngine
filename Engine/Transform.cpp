@@ -3,7 +3,8 @@
 Transform::Transform()
     :matScale_(XMMatrixIdentity()),
     matRotate_(XMMatrixIdentity()),
-    matTranslate_(XMMatrixIdentity())
+    matTranslate_(XMMatrixIdentity()),
+    pParent_(nullptr)
 {
     position_ = { 0.0f,0.0f,0.0f };
     rotate_ = { 0.0f,0.0f,0.0f };
@@ -23,7 +24,12 @@ void Transform::Calculation()
 
 XMMATRIX Transform::GetWorldMatrix()
 {
-    return matScale_ * matRotate_ * matTranslate_;
+    if (pParent_ != nullptr)
+    {
+        return matScale_ * matRotate_ * matTranslate_ * pParent_->GetWorldMatrix();
+    }
+    else
+        return matScale_ * matRotate_ * matTranslate_;
 }
 
 XMMATRIX Transform::GetNormalMatrix()

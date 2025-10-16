@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Engine\\Fbx.h"
+#include "ChildOden.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent, "Player"), pFbx_(nullptr)
@@ -18,11 +19,13 @@ void Player::Initialize()
 	transform_.scale_.x = 0.7f;
 	transform_.scale_.y = 0.7f;
 	transform_.scale_.z = 0.7f;
+	//子オブジェクトにChildOdenを追加する
+	Instantiate<ChildOden>(this);
 }
 
 void Player::Update()
 {
-	transform_.rotate_.y += 0.1f;
+	transform_.rotate_.y += 1.0f;
 }
 
 void Player::Draw()

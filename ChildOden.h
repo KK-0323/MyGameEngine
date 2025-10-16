@@ -3,12 +3,12 @@
 
 class Fbx; // 前方宣言
 
-class Player :
+class ChildOden :
     public GameObject
 {
 public:
-    Player(GameObject* parent);
-    ~Player();
+    ChildOden(GameObject* parent);
+    ~ChildOden();
     // 純粋仮想関数のオーバーライド
     void Initialize() override;
     void Update() override;

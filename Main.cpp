@@ -93,6 +93,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         //static long int cnt = 0;
         //string str = "Sample Game cnt:" + std::to_string(cnt++);
         
+        timeBeginPeriod(1);
         static DWORD countFps = 0; // FPS計測用カウンタ
         static DWORD startTime = timeGetTime(); // 初回の時間を保存
         DWORD nowTime = timeGetTime(); // 現在の時間を取得
@@ -115,6 +116,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
         countFps++;
         //startTime = nowTime;
+        timeEndPeriod(1);
 
         //ゲームの処理
         Camera::Update(); // カメラの更新
