@@ -157,6 +157,7 @@
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Transform.h" />
     <ClInclude Include="TestScene.h" />
+    <ClInclude Include="TitleModel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildOden.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="TestScene.cpp" />
+    <ClCompile Include="TitleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Main.rc" />
