@@ -20,8 +20,7 @@ void TestScene::Initialize()
 
 void TestScene::Update()
 {
-	// スペースキーを押したら
-	// SceneManager::ChangeScene(SCENE_ID_PLAY);を呼び出す
+	// スペースキーを押したらプレイシーンを呼び出す
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
 		GameObject* sceneManagerObj = this->GetRootJob()->FindObject("SceneManager");
