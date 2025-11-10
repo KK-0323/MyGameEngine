@@ -146,8 +146,9 @@ void GameObject::Collision(GameObject* pTarget)
 	//②コライダー同士が交差していたら
 	if (dist <= thre)
 	{
+		OnCollision(pTarget);
 		//③なんかする
-		MessageBoxA(0, "ぶつかった", "Collider", MB_OK);
+		//MessageBoxA(0, "ぶつかった", "Collider", MB_OK);
 	}
 	
 }
@@ -163,4 +164,8 @@ void GameObject::RoundRobin(GameObject* pTarget)
 	//③再帰的なやつで、ターゲットの子オブジェクトを当たり判定してく
 	for (auto itr : pTarget->childList_)
 		RoundRobin(itr);
+}
+
+void GameObject::OnCollision(GameObject* pTarget)
+{
 }

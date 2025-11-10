@@ -32,3 +32,8 @@ void Enemy::Draw()
 void Enemy::Release()
 {
 }
+
+void Enemy::OnCollision(GameObject* pTarget)
+{
+	MessageBoxA(0, "Enemy‚ª‚Ô‚Â‚©‚Á‚½", "Collider", MB_OK);
+}
