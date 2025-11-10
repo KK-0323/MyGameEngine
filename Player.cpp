@@ -2,6 +2,8 @@
 #include "Engine\\Fbx.h"
 #include "ChildOden.h"
 #include "Engine\\Model.h"
+#include "Engine\\SphereCollider.h"
+#include "Engine\\Input.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent, "Player"), pFbx_(nullptr)
@@ -19,26 +21,36 @@ void Player::Initialize()
 	//pFbx_->Load("oden.fbx");
 	hModel_ = Model::Load("oden.fbx");
 	assert(hModel_ >= 0);
-	transform_.scale_.x = 0.7f;
-	transform_.scale_.y = 0.7f;
-	transform_.scale_.z = 0.7f;
+	//transform_.scale_.x = 0.7f;
+	//transform_.scale_.y = 0.7f;
+	//transform_.scale_.z = 0.7f;
 	//子オブジェクトにChildOdenを追加する
 	pRChildOden_ = (ChildOden *)Instantiate<ChildOden>(this);
 	pLChildOden_ = (ChildOden *)Instantiate<ChildOden>(this);
 	pRChildOden_->SetPosition(2.0f, 1.0f, 0.0f);
 	pLChildOden_->SetPosition(-2.0f, 1.0f, 0.0f);
 	
-	
+	SphereCollider* col = new SphereCollider(0.5f);
+	AddCollider(col);
 
 }
 
 void Player::Update()
 {
+	static float x = 0.0f;
+	float tx = sin(x) * 5.0f;
+	x += 0.02f;
+	//transform_.position_.x = tx;
 	transform_.rotate_.y += 1.0f;
-	if (transform_.rotate_.y > 360.0f)
+	if (Input::IsKey(DIK_SPACE))
 	{
-		KillMe();
+		transform_.position_.z += 0.2f;
 	}
+
+	//if (transform_.rotate_.y > 360.0f)
+	//{
+	//	KillMe();
+	//}
 }
 
 void Player::Draw()

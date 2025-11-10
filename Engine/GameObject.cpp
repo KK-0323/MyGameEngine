@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include "SphereCollider.h"
+#include <Windows.h>
 
 GameObject::GameObject()
 	:pParent_(nullptr)
@@ -146,6 +147,7 @@ void GameObject::Collision(GameObject* pTarget)
 	if (dist <= thre)
 	{
 		//‡B‚È‚ñ‚©‚·‚é
+		//MessageBoxA(0, "‚Ô‚Â‚©‚Á‚½", "Collider", MB_OK);
 	}
 	
 }
