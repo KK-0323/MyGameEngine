@@ -14,9 +14,11 @@ Player::~Player()
 
 void Player::Initialize()
 {
-	pFbx_ = new Fbx;
-	//pFbx_がnullptrじゃなかったらのチェックを入れたほうがいい
-	pFbx_->Load("oden.fbx");
+	//pFbx_ = new Fbx;
+	////pFbx_がnullptrじゃなかったらのチェックを入れたほうがいい
+	//pFbx_->Load("oden.fbx");
+	hModel_ = Model::Load("oden.fbx");
+	assert(hModel_ >= 0);
 	transform_.scale_.x = 0.7f;
 	transform_.scale_.y = 0.7f;
 	transform_.scale_.z = 0.7f;
@@ -26,8 +28,7 @@ void Player::Initialize()
 	pRChildOden_->SetPosition(2.0f, 1.0f, 0.0f);
 	pLChildOden_->SetPosition(-2.0f, 1.0f, 0.0f);
 	
-	hModel_ = Model::Load("oden.fbx");
-	assert(hModel_ >= 0);
+	
 
 }
 
