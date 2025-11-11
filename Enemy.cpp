@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Engine\\SphereCollider.h"
+#include "Engine\\SceneManager.h"
 
 Enemy::Enemy(GameObject* parent)
 	:GameObject(parent, "Enemy"), pFbx_(nullptr)
@@ -35,5 +36,20 @@ void Enemy::Release()
 
 void Enemy::OnCollision(GameObject* pTarget)
 {
-	MessageBoxA(0, "Enemy‚ª‚Ô‚Â‚©‚Á‚½", "Collider", MB_OK);
+	//MessageBoxA(0, "Enemy‚ª‚Ô‚Â‚©‚Á‚½", "Collider", MB_OK);
+	if (pTarget->GetName() == "Bullet")
+	{
+		KillMe();	// “G
+		pTarget->KillMe();	// ’e
+
+		GameObject* sceneObj = this->GetRootJob()->FindObject("SceneManager");
+		if (sceneObj != nullptr)
+		{
+			SceneManager* sceneManager = dynamic_cast<SceneManager*>(sceneObj);
+			if (sceneManager != nullptr)
+			{
+				sceneManager->ChangeScene(SCENE_ID_CLEAR);
+			}
+		}
+	}
 }

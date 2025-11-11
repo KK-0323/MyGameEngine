@@ -46,6 +46,9 @@ public:
 		return(obj);
 	}
 
+	// ƒQƒbƒ^[ŠÖ”
+	string GetName() const { return objectName_; }
+
 protected:
 	list<GameObject*>	childList_;
 	Transform			transform_;

@@ -2,6 +2,8 @@
 #include "Engine\\GameObject.h"
 #include "Engine\\Fbx.h"
 
+class SceneManager; // ‘O•ûéŒ¾
+
 class Enemy :
     public GameObject
 {

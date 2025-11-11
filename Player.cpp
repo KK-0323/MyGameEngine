@@ -4,6 +4,7 @@
 #include "Engine\\Model.h"
 #include "Engine\\SphereCollider.h"
 #include "Engine\\Input.h"
+#include "Bullet.h"
 
 Player::Player(GameObject* parent)
 	:GameObject(parent, "Player"), pFbx_(nullptr)
@@ -37,15 +38,21 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	static float x = 0.0f;
-	float tx = sin(x) * 5.0f;
-	x += 0.02f;
+	//static float x = 0.0f;
+	//float tx = sin(x) * 5.0f;
+	//x += 0.02f;
 	//transform_.position_.x = tx;
 	transform_.rotate_.y += 1.0f;
-	if (Input::IsKey(DIK_SPACE))
+
+	if (Input::IsKeyDown(DIK_SPACE))
 	{
-		transform_.position_.z += 0.2f;
+		GameObject* pBullet = Instantiate<Bullet>(GetRootJob());
+		pBullet->SetPosition(transform_.position_);
 	}
+	//if (Input::IsKey(DIK_SPACE))
+	//{
+	//	transform_.position_.z += 0.2f;
+	//}
 
 	//if (transform_.rotate_.y > 360.0f)
 	//{

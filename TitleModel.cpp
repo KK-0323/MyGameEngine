@@ -27,10 +27,10 @@ void TitleModel::Initialize()
 void TitleModel::Update()
 {
 	transform_.rotate_.y += 0.5f;
-	if (transform_.rotate_.y > 360.0f)
-	{
-		KillMe();
-	}
+	//if (transform_.rotate_.y > 360.0f)
+	//{
+	//	KillMe();
+	//}
 
 }
 
