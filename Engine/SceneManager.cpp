@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "..\\PlayScene.h"
 #include "..\\TestScene.h"
+#include "..\\ClearScene.h"
 #include "Direct3D.h"
 #include "Model.h"
 
@@ -37,6 +38,9 @@ void SceneManager::Update()
 			break;
 		case SCENE_ID_TEST:
 			Instantiate<TestScene>(this);
+			break;
+		case SCENE_ID_CLEAR:
+			Instantiate<ClearScene>(this);
 			break;
 		case SCENE_ID_MAX:
 			break;
