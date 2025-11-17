@@ -7,7 +7,6 @@ class SceneManager; // ‘O•ûéŒ¾
 class Enemy :
     public GameObject
 {
-    Fbx* pFbx_;
 public:
 	Enemy(GameObject* parent);
 	~Enemy();
@@ -16,5 +15,9 @@ public:
 	void Draw() override;
 	void Release() override;
 	void OnCollision(GameObject* pTarget) override;
+private:
+	Fbx* pFbx_;
+	float shootTimer_;
+	const float SHOOT_INTERVAL = 120.0f;
 };
 

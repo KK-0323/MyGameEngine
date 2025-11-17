@@ -1,9 +1,10 @@
 #include "Enemy.h"
 #include "Engine\\SphereCollider.h"
 #include "Engine\\SceneManager.h"
+#include "Bullet.h"
 
 Enemy::Enemy(GameObject* parent)
-	:GameObject(parent, "Enemy"), pFbx_(nullptr)
+	:GameObject(parent, "Enemy"), pFbx_(nullptr), shootTimer_(SHOOT_INTERVAL)
 {
 }
 
@@ -23,6 +24,21 @@ void Enemy::Initialize()
 
 void Enemy::Update()
 {
+	shootTimer_--;
+	if (shootTimer_ <= 0.0f)
+	{
+		GameObject* pBullet = Instantiate<Bullet>(GetRootJob());
+		pBullet->SetPosition(transform_.position_);
+
+		Bullet* pBulletObj = dynamic_cast<Bullet*>(pBullet);
+		if (pBulletObj != nullptr)
+		{
+			pBulletObj->SetShooter(false);
+		}
+
+		shootTimer_ = SHOOT_INTERVAL;
+	}
+
 }
 
 void Enemy::Draw()
