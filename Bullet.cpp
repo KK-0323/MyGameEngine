@@ -5,7 +5,7 @@
 #include <Windows.h>
 
 Bullet::Bullet(GameObject* parent)
-	:GameObject(parent, "Bullet"), pFbx_(nullptr), bulletSpeed_(1.0f), isPlayerBullet_(true)
+	:GameObject(parent, "Bullet"), pFbx_(nullptr), bulletSpeed_(1.0f)
 {
 }
 
@@ -18,23 +18,14 @@ void Bullet::Initialize()
 	hModel_ = Model::Load("Egg.fbx");
 	assert(hModel_ >= 0);
 
-	transform_.position_.z = -40.0f;
-	transform_.scale_ = { 0.5f,0.5f,0.5f };
-
-	//SphereCollider* col = new SphereCollider(0.3f);
-	//AddCollider(col);
+	SphereCollider* col = new SphereCollider(0.2f);
+	AddCollider(col);
 }
 
 void Bullet::Update()
 {
-	if(isPlayerBullet_ = true)
-	{ 
-		transform_.position_.z -= bulletSpeed_;
-	}
-	else if(isPlayerBullet_ = false)
-	{
-		transform_.position_.z += bulletSpeed_;
-	}
+	transform_.scale_ = { 0.5f,0.5f,0.5f };
+	transform_.position_.z += bulletSpeed_;
 }
 
 void Bullet::Draw()

@@ -48,21 +48,6 @@ void Player::Update()
 	{
 		GameObject* pBullet = Instantiate<Bullet>(GetRootJob());
 		pBullet->SetPosition(transform_.position_);
-
-		Bullet* pBulletObj = dynamic_cast<Bullet*>(pBullet);
-		if (pBulletObj != nullptr)
-		{
-			pBulletObj->SetShooter(true);
-		}
-	}
-
-	if (Input::IsKey(DIK_A) || Input::IsKey(DIK_LEFT))
-	{
-		transform_.position_.x -= 0.3f;
-	}
-	else if (Input::IsKey(DIK_D) || Input::IsKey(DIK_RIGHT))
-	{
-		transform_.position_.x += 0.3f;
 	}
 	//if (Input::IsKey(DIK_SPACE))
 	//{
