@@ -44,6 +44,6 @@ void Bullet::Release()
 
 void Bullet::OnCollision(GameObject* pTarget)
 {
-	MessageBoxA(0, "’e‚ª“–‚½‚Á‚½", "Collider", MB_OK);
+	//MessageBoxA(0, "’e‚ª“–‚½‚Á‚½", "Collider", MB_OK);
 	//KillMe();
 }
